@@ -1,0 +1,34 @@
+- name: Test install on a package
+  hosts: test_media
+  become: true
+  gather_facts: true
+  roles:
+    - common
+  tasks:
+      
+    - name: install sudo package
+      apt:
+        name: sudo
+        state: latest
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: create ansible user
+      user:
+        name: ansible-test
+        comment: Test user for ansible
+        shell: '/bin/bash'
+
+    - name: add ansible ssh key
+      authorized_key:
+        user: ansible-test
+        key: "{{ ssh_key  }}"
+
+    - name: add ansible-test to sudoers group
+      copy:
+        src: roles/common/files/sudoers_ansible
+        dest: /etc/sudoers.d/ansible
+        owner: root
+        group: root
+        mode: 0440
+
