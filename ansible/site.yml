@@ -3,7 +3,7 @@
   become: true
   gather_facts: true
   roles:
-    - common
+    - temp
   tasks:
       
     - name: install sudo package

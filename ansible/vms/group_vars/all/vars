@@ -1,0 +1,10 @@
+ansible_key_file: /root/blackmesa/ansible/files/public-keys/ansible-key.pub
+project_path: '/root/blackmesa/ansible/vms'
+image_path: '/var/lib/vz/images/0'
+domain_name: '.blackmesa.lab'
+timezone: 'Europe/Lisbon'
+locale: 'en_US.UTF-8'
+group_name: pvenodes
+variable_files:
+  - images
+  - vms

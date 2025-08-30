@@ -1,0 +1,17 @@
+- name: create new KVM with ISO attached
+  community.proxmox.proxmox_kvm:
+    api_user: root@pam
+    api_password: "!#2101/Dudu!#"
+    api_host: 192.168.1.167
+    node: prox
+    name: KVM-test
+    vmid: 101
+    memory: 2048
+    cores: 2
+    virtio:
+      virtio0: "local:32"   # 20G main disk
+    ide:
+      ide2: "local:iso/debian-13.0.0-amd64-netinst.iso,media=cdrom"
+    ostype: l26
+    boot: cdn
+
