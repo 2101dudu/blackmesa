@@ -1,8 +1,0 @@
-api_host: '{{ iventory_hostname }}'
-drive_storage: vms
-drive_format: qcow2
-snippets_storage: local
-snippets_path: '/var/lib/vz/snippets/'
-image_storage: local
-linux_bridge: vmbr0
-

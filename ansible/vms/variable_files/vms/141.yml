@@ -1,7 +1,7 @@
   - name: vmtest141
     vmid: 141
     node: prox
-    image_file: noble-server-cloudimg-amd64.img
+    image_file: debian-11-generic-amd64.qcow2
     cores: 2
     memory: 2048
     ipv4_address: 192.168.1.141/24

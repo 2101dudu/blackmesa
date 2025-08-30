@@ -30,12 +30,11 @@
     timeout: 700
   loop: '{{computers}}'
   when: 'item.state == "new"'
-    # no_log: yes
 
 # Update network settings
 # A custom file would have been preferred to update the network settings but the problem is it includes a MAC address
 # So all VMs will be configured to use DHCP by default, those that need a static IP will be updated
-- name: Update network settings
+- name: create network settings
   proxmox_kvm:
     api_user: '{{api_user}}'
     api_token_id: '{{api_token_id}}'
@@ -48,13 +47,11 @@
     timeout: 60
     update: true
   loop: '{{computers}}'
-  when: (item.state == "new") and
-        (item.ipv4mode == 'static')
-  no_log: yes
+  when: (item.state == "new")
 
  # Resize the disk
  # The Cloud-Init disk is only 2GB
-- name: Resize disk
+- name: resize disk
   community.general.proxmox_disk:
     api_user: '{{api_user}}'
     api_token_id: '{{api_token_id}}'
@@ -67,10 +64,9 @@
     timeout: 60
   loop: '{{computers}}'
   when: 'item.state == "new"'
-  no_log: yes
 
 # Start VMs
-- name: Start VMs
+- name: start VMs
   proxmox_kvm:
     api_user: '{{api_user}}'
     api_token_id: '{{api_token_id}}'
@@ -81,4 +77,3 @@
     state: 'started'
   loop: '{{computers}}'
   when: 'item.state == "new"'
-  no_log: yes

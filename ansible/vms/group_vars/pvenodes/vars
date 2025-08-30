@@ -1,5 +1,5 @@
 api_host: '{{ inventory_hostname }}'
-drive_storage: vms
+drive_storage: local
 drive_format: qcow2
 snippets_storage: local
 snippets_path: '/var/lib/vz/snippets'
