@@ -24,7 +24,7 @@
     balloon: 0
     boot: order=scsi0
     ipconfig:
-      ipconfig0: 'ip=dhcp'
+      ipconfig0: 'ip={{ item.ipv4_address }},gw={{ item.ipv4_gateway }}'
     cicustom: 'user={{snippets_storage}}:snippets/{{item.vmid}}-user.yml'
     agent: 'enabled=1'
     timeout: 700
@@ -34,20 +34,20 @@
 # Update network settings
 # A custom file would have been preferred to update the network settings but the problem is it includes a MAC address
 # So all VMs will be configured to use DHCP by default, those that need a static IP will be updated
-- name: create network settings
-  proxmox_kvm:
-    api_user: '{{api_user}}'
-    api_token_id: '{{api_token_id}}'
-    api_token_secret: '{{api_token_secret}}'
-    api_host: '{{api_host}}'
-    node: '{{item.node}}'
-    vmid: '{{item.vmid}}'
-    ipconfig:
-      ipconfig0: 'ip={{item.ipv4_address}},gw={{item.ipv4_gateway}}'
-    timeout: 60
-    update: true
-  loop: '{{computers}}'
-  when: (item.state == "new")
+#- name: create network settings
+#  proxmox_kvm:
+#    api_user: '{{api_user}}'
+#    api_token_id: '{{api_token_id}}'
+#    api_token_secret: '{{api_token_secret}}'
+#    api_host: '{{api_host}}'
+#    node: '{{item.node}}'
+#    vmid: '{{item.vmid}}'
+#    ipconfig:
+#      ipconfig0: 'ip={{item.ipv4_address}},gw={{item.ipv4_gateway}}'
+#    timeout: 60
+#    update: true
+#  loop: '{{computers}}'
+#  when: (item.state == "new")
 
  # Resize the disk
  # The Cloud-Init disk is only 2GB

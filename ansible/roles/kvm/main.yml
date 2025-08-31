@@ -1,5 +1,0 @@
-- name: download ubuntu cloud-init image
-  ansible.builtin.get_url:
-    url: https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img # ubuntu 24.04 LTS
-    dest: /var/lib/vz/template/iso/ # local lvm path
-    checksum: sha256:834af9cd766d1fd86eca156db7dff34c3713fbbc7f5507a3269be2a72d2d1820 # found here: https://cloud-images.ubuntu.com/noble/current/SHA256SUMS

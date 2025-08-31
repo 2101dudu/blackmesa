@@ -1,7 +1,0 @@
-kvm_test_vmid: 141
-kvm_test_node: prox
-kvm_test_api_user: kvm-test@pam
-kvm_test_api_host: test-media
-kvm_test_api_password: 123456
-kvm_test_name: kvm-test
-kvm_test_ostemplate: 'local:iso/debian-13.0.0-amd64-netinst.iso'

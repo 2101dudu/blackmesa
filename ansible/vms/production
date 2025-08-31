@@ -1,6 +1,0 @@
-[pvenodes]
-192.168.1.167 ansible_user=root
-
-[blackmesanodes]
-192.168.1.140
-192.168.1.141
