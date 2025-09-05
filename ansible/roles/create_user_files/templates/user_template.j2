@@ -17,6 +17,7 @@ timezone: {{ timezone }}
 packages:
   - qemu-guest-agent
   - ufw
+  - git
 runcmd:
   - systemctl enable qemu-guest-agent
   - systemctl start qemu-guest-agent

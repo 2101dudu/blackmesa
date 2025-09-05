@@ -1,0 +1,6 @@
+- name: clone blackmesa repo
+  ansible.builtin.git:
+    repo: 'https://github.com/2101dudu/blackmesa.git'
+    dest: ~/blackmesa
+
+# - name: docker compose up
