@@ -1,0 +1,6 @@
+  - name: ubuntu24-image
+    cloud_init_file: 'noble-server-cloudimg-amd64.img'
+    image_url: 'https://cloud-images.ubuntu.com/noble/20250805/noble-server-cloudimg-amd64.img'
+    image_checksum: sha256:834af9cd766d1fd86eca156db7dff34c3713fbbc7f5507a3269be2a72d2d1820 # value from  https://cloud-images.ubuntu.com/noble/20250805/SHA256SUMS
+    state: present
+

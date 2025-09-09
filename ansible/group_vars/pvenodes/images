@@ -1,0 +1,13 @@
+os_images:
+  - name: debian11-image
+    cloud_init_file: 'debian-11-generic-amd64.qcow2'
+    image_url: 'https://cloud.debian.org/images/cloud/bullseye/20250801-2191/debian-11-generic-amd64-20250801-2191.qcow2'
+    image_checksum: sha512:d31803f0f7ee0738906a5d516c4c22c451cb6412324a01ae584760ea9afcf4eb04a3cb7b1e45e1ac79672a4e8e1f72699e855b02824521aa0d3936d1ff6f7f78 # value from https://cloud.debian.org/images/cloud/bullseye/20250801-2191/SHA512SUMS
+    state: present
+
+  - name: ubuntu24-image
+    cloud_init_file: 'noble-server-cloudimg-amd64.img'
+    image_url: 'https://cloud-images.ubuntu.com/noble/20250805/noble-server-cloudimg-amd64.img'
+    image_checksum: sha256:834af9cd766d1fd86eca156db7dff34c3713fbbc7f5507a3269be2a72d2d1820 # value from  https://cloud-images.ubuntu.com/noble/20250805/SHA256SUMS
+    state: present
+

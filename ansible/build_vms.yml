@@ -1,0 +1,49 @@
+- hosts: localhost
+  become: false
+  gather_facts: false
+  tasks:
+
+  - name: create variable files
+    include_role:
+      name: create_variables_file
+    vars:
+      variable_name: '{{ item }}'
+    loop:
+      '{{ variable_files }}'
+
+- hosts: pvenodes
+  become: true
+  gather_facts: false
+  roles:
+    - download_cloud_init_images
+    - create_user_files
+
+- hosts: pvenodes[0]
+  become: false
+  gather_facts: false
+  roles:
+    - create_vms
+
+- hosts: pvenodes[0]
+  become: false
+  gather_facts: false
+  tasks:
+    - name: register new VMs as ansible hosts
+      add_host:
+        name: "{{ item.name }}"
+        ansible_host: "{{ item.ipv4_address.split('/')[0] }}"
+        ansible_user: debian
+        groups: provisioned_vms
+      loop: "{{ computers }}"
+      when: item.state == "new"
+
+    - name: wait for VMs to boot
+      ansible.builtin.wait_for:
+        timeout: 40
+      delegate_to: localhost
+
+- hosts: provisioned_vms
+  become: false
+  gather_facts: false
+  roles:
+    - setup_docker
