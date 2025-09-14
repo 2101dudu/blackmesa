@@ -1,0 +1,5 @@
+- name: create variable files
+  ansible.builtin.assemble:
+    src: '{{ project_path }}/variable_files/{{ variable_name }}/'
+    dest: '{{ project_path }}/group_vars/{{ group_name }}/{{ variable_name }}'
+  delegate_to: localhost

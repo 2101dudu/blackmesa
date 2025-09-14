@@ -1,0 +1,28 @@
+#cloud-config
+hostname: {{ item.name }}
+manage_etc_hosts: true
+fqdn: {{ item.name }}{{ domain_name }}
+users:
+  - name: debian
+    lock_passwd: true
+    shell: /bin/bash
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    ssh_authorized_keys:
+      - {{ lookup("file", ansible_key_file) }}
+chpasswd:
+  expire: false
+package_update: true
+package_upgrade: true
+timezone: {{ timezone }}
+packages:
+  - qemu-guest-agent
+  - ufw
+  - git
+runcmd:
+  - systemctl enable qemu-guest-agent
+  - systemctl start qemu-guest-agent
+  - ufw limit proto tcp from {{ansible_ip}} to any port 22
+  - ufw enable 
+  - locale-gen {{ locale }}
+  - localectl set-locale LANG={{ locale }} 
+  - chfn -f Ansible {{ ansible_user }}
