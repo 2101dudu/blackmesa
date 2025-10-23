@@ -1,0 +1,38 @@
+services:
+  wireguard:
+    image: linuxserver/wireguard:1.0.20250521
+    container_name: wireguard
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    labels:
+      glance.name: Wireguard
+      glance.icon: sh:wireguard-transparent
+      glance.description: Blackmesa' Wireguard Server
+      glance.category: core
+    dns:
+      - 1.1.1.1 # Cloudflare
+      - 1.0.0.1
+    volumes:
+      - ./data:/config/wg_confs/
+      - /lib/modules:/lib/modules
+    ports:
+      - 51820:51820/udp
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+    restart: unless-stopped
+    networks:
+      exposed:
+        ipv4_address: 172.30.0.2
+networks:
+  exposed:
+    name: blackmesa
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.30.0.0/24
+          gateway: 172.30.0.1
