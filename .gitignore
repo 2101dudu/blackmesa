@@ -2,3 +2,4 @@ ansible-key.pub
 
 postgres/
 
+**/data/*
