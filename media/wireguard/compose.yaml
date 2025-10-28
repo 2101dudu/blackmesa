@@ -14,12 +14,12 @@ services:
       glance.icon: sh:wireguard-transparent
       glance.description: Blackmesa' Wireguard Server
       glance.category: core
-    dns:
-      - 1.1.1.1 # Cloudflare
-      - 1.0.0.1
     volumes:
       - ./data:/config/wg_confs/
       - /lib/modules:/lib/modules
+    dns:
+      - 172.29.0.4 # CoreDNS (TODO: change DNS to blackmesa's network)
+      - 1.1.1.1    # Cloudflare
     ports:
       - 51820:51820/udp
     sysctls:
@@ -28,6 +28,7 @@ services:
     networks:
       exposed:
         ipv4_address: 172.30.0.2
+
 networks:
   exposed:
     name: blackmesa
