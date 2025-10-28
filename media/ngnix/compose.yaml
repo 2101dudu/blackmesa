@@ -11,7 +11,7 @@ services:
       - ./letsencrypt:/etc/letsencrypt
     networks:
       exposed:
-        ipv4_address: 172.30.0.100
+        ipv4_address: 172.30.0.5
 
 networks:
   exposed:

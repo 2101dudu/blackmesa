@@ -22,11 +22,9 @@ services:
       - /etc/localtime:/etc/localtime:ro
     env_file:
       - .env
-    ports:
-      - '2283:2283'
     networks:
       exposed:
-        ipv4_address: 172.30.0.10
+        ipv4_address: 172.30.0.100
     depends_on:
       - redis
       - database
@@ -44,7 +42,7 @@ services:
     #   service: cpu # set to one of [armnn, cuda, rocm, openvino, openvino-wsl, rknn] for accelerated inference - use the `-wsl` version for WSL2 where applicable
     networks:
       exposed:
-        ipv4_address: 172.30.0.11
+        ipv4_address: 172.30.0.101
     volumes:
       - model-cache:/cache
     env_file:
@@ -58,7 +56,7 @@ services:
     image: docker.io/valkey/valkey:8-bookworm@sha256:fea8b3e67b15729d4bb70589eb03367bab9ad1ee89c876f54327fc7c6e618571
     networks:
       exposed:
-        ipv4_address: 172.30.0.12
+        ipv4_address: 172.30.0.102
     healthcheck:
       test: redis-cli ping || exit 1
     restart: always
@@ -75,7 +73,7 @@ services:
       DB_STORAGE_TYPE: 'HDD'
     networks:
       exposed:
-        ipv4_address: 172.30.0.13
+        ipv4_address: 172.30.0.103
     volumes:
       # Do not edit the next line. If you want to change the database storage location on your system, edit the value of DB_DATA_LOCATION in the .env file
       - ${DB_DATA_LOCATION}:/var/lib/postgresql/data
