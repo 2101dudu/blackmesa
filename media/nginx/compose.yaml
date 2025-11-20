@@ -14,6 +14,12 @@ services:
     volumes:
       - ./data:/data
       - ./letsencrypt:/etc/letsencrypt
+    labels:
+      glance.name: Nginx Proxy Manager
+      glance.icon: si:nginxproxymanager
+      glance.url: https://nginx.blackmesa.local
+      glance.description: Reverse proxy(ier)
+      glance.category: core
     restart: unless-stopped 
     networks:
       exposed:

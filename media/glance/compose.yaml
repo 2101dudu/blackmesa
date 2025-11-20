@@ -10,9 +10,14 @@ services:
       - ./config:/app/config
       - ./assets:/app/assets
       - /etc/localtime:/etc/localtime:ro
-      # Optionally, also mount docker socket if you want to use the docker containers widget
-      # - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     env_file: .env
+    labels:
+      glance.name: Glance
+      glance.icon: di:glance
+      glance.url: https://glance.blackmesa.local
+      glance.description: Costumizable dashboard
+      glance.category: other
     restart: unless-stopped
     networks:
       exposed:
