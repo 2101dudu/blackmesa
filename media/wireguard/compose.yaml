@@ -18,8 +18,9 @@ services:
       - ./data:/config/wg_confs/
       - /lib/modules:/lib/modules
     dns:
-      - 172.29.0.4 # CoreDNS (TODO: change DNS to blackmesa's network)
       - 1.1.1.1    # Cloudflare
+      - 8.8.8.8    # Google
+      - 172.29.0.4 # CoreDNS (TODO: change DNS to blackmesa's network)
     ports:
       - 51820:51820/udp
     sysctls:
