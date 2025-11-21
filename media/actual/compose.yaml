@@ -23,6 +23,12 @@ services:
       timeout: 10s
       retries: 3
       start_period: 20s
+    labels:
+      glance.name: Actual Budget
+      glance.icon: si:actualbudget
+      glance.url: https://actual.blackmesa.local
+      glance.description: Personal finance manager
+      glance.category: finance
     restart: unless-stopped
     networks:
       exposed:

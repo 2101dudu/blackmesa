@@ -11,8 +11,8 @@ services:
       - TZ=Etc/UTC
     labels:
       glance.name: Wireguard
-      glance.icon: sh:wireguard-transparent
-      glance.description: Blackmesa' Wireguard Server
+      glance.icon: si:wireguard
+      glance.description: Virtual Private Network
       glance.category: core
     volumes:
       - ./data:/config/wg_confs/
