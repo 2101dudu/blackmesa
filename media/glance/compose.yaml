@@ -6,6 +6,8 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
+      - GHOSTFOLIO_URL=${GHOSTFOLIO_URL}
+      - GHOSTFOLIO_API_URL=${GHOSTFOLIO_API_URL}
     volumes:
       - ./config:/app/config
       - ./assets:/app/assets

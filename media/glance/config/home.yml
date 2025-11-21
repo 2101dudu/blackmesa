@@ -61,8 +61,10 @@
       widgets:
         - type: weather
           location: Braga, Portugal
-          units: metric 
-          hour-format: 24h
+          units: metric
+          hour-format: 24h 
+
+        - $include: ghostfolio/meta.yml
 
         - type: markets
           markets:
@@ -70,3 +72,7 @@
               name: S&P 500
             - symbol: BTC-USD
               name: Bitcoin
+            - symbol: FXAC.AS
+              name: China Large Cap
+            - symbol: VWCE.DE
+              name: All world
