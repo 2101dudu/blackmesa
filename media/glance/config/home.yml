@@ -32,6 +32,9 @@
 
     - size: full
       widgets:
+        - type: docker-containers
+          hide-by-default: false
+
         - type: group
           widgets:
             - type: hacker-news
@@ -57,11 +60,11 @@
     - size: small
       widgets:
         - type: weather
-          location: London, United Kingdom
-          units: metric # alternatively "imperial"
-          hour-format: 12h # alternatively "24h"
-          # Optionally hide the location from being displayed in the widget
-          # hide-location: true
+          location: Braga, Portugal
+          units: metric
+          hour-format: 24h 
+
+        - $include: ghostfolio/meta.yml
 
         - type: markets
           markets:
@@ -69,20 +72,7 @@
               name: S&P 500
             - symbol: BTC-USD
               name: Bitcoin
-            - symbol: NVDA
-              name: NVIDIA
-            - symbol: AAPL
-              name: Apple
-            - symbol: MSFT
-              name: Microsoft
-
-        - type: releases
-          cache: 1d
-          # Without authentication the Github API allows for up to 60 requests per hour. You can create a
-          # read-only token from your Github account settings and use it here to increase the limit.
-          # token: ...
-          repositories:
-            - glanceapp/glance
-            - go-gitea/gitea
-            - immich-app/immich
-            - syncthing/syncthing
+            - symbol: FXAC.AS
+              name: China Large Cap
+            - symbol: VWCE.DE
+              name: All world
