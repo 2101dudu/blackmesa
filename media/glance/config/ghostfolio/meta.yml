@@ -10,9 +10,9 @@
         <div style="flex: 1; text-align: center;">
           <p>TODAY</p>
           <div style="display: flex; justify-content: center; align-items: center;">
-            <p class="{{ if gt (.JSON.Float "performance.1d.relativeChange") 0.0 }}color-positive{{ else }}color-negative{{ end }}">
+            <p class="{{ if ge (.JSON.Float "performance.1d.relativeChange") 0.0 }}color-positive{{ else }}color-negative{{ end }}">
               {{ mul (.JSON.Float "performance.1d.relativeChange") 100 | printf "%.2f" }}%
-              {{ if gt (.JSON.Float "performance.1d.relativeChange") 0.0 }}↑{{ else }}↓{{ end }}
+              {{ if ge (.JSON.Float "performance.1d.relativeChange") 0.0 }}↑{{ else }}↓{{ end }}
             </p>
           </div>
         </div>
@@ -20,9 +20,9 @@
         <div style="flex: 1; text-align: center;">
           <p>YEAR</p>
           <div style="display: flex; justify-content: center; align-items: center;">
-            <p class="{{ if gt (.JSON.Float "performance.ytd.relativeChange") 0.0 }}color-positive{{ else }}color-negative{{ end }}">
+            <p class="{{ if ge (.JSON.Float "performance.ytd.relativeChange") 0.0 }}color-positive{{ else }}color-negative{{ end }}">
               {{ mul (.JSON.Float "performance.ytd.relativeChange") 100 | printf "%.2f" }}%
-              {{ if gt (.JSON.Float "performance.ytd.relativeChange") 0.0 }}↑{{ else }}↓{{ end }}
+              {{ if ge (.JSON.Float "performance.ytd.relativeChange") 0.0 }}↑{{ else }}↓{{ end }}
             </p>
           </div>
         </div>
@@ -30,9 +30,9 @@
         <div style="flex: 1; text-align: center;">
           <p>TOTAL</p>
           <div style="display: flex; justify-content: center; align-items: center;">
-            <p class="{{ if gt (.JSON.Float "performance.max.relativeChange") 0.0 }}color-positive{{ else }}color-negative{{ end }}">
+            <p class="{{ if ge (.JSON.Float "performance.max.relativeChange") 0.0 }}color-positive{{ else }}color-negative{{ end }}">
               {{ mul (.JSON.Float "performance.max.relativeChange") 100 | printf "%.2f" }}%
-              {{ if gt (.JSON.Float "performance.max.relativeChange") 0.0 }}↑{{ else }}↓{{ end }}
+              {{ if ge (.JSON.Float "performance.max.relativeChange") 0.0 }}↑{{ else }}↓{{ end }}
             </p>
           </div>
         </div>

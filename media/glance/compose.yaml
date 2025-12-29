@@ -16,7 +16,7 @@ services:
     env_file: .env
     labels:
       glance.name: Glance
-      glance.icon: di:glance
+      glance.icon: sh:glance-light
       glance.url: https://glance.blackmesa.local
       glance.description: Costumizable dashboard
       glance.category: other
