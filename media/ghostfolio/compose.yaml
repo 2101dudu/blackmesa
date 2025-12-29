@@ -2,6 +2,12 @@ services:
   ghostfolio:
     image: docker.io/ghostfolio/ghostfolio:2
     container_name: ghostfolio
+    labels:
+      glance.id: ghostfolio
+      glance.name: Ghostfolio
+      glance.url: https://ghostfolio.blackmesa.local
+      glance.icon: sh:ghostfolio-light
+      glance.description: A private investments tracker
     restart: unless-stopped
     init: true
     cap_drop:
@@ -26,6 +32,9 @@ services:
   postgres:
     image: docker.io/library/postgres:15-alpine
     container_name: gf-postgres
+    labels:
+      glance.parent: ghostfolio
+      glance.name: Ghostfolio Postgres
     restart: unless-stopped
     cap_drop:
       - ALL
@@ -53,6 +62,9 @@ services:
   redis:
     image: docker.io/library/redis:alpine
     container_name: gf-redis
+    labels:
+      glance.parent: ghostfolio
+      glance.name: Ghostfolio Redis
     restart: unless-stopped
     user: '999:1000'
     cap_drop:
