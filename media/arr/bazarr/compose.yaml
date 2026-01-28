@@ -1,0 +1,27 @@
+services:
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:1.5.5-development
+    container_name: bazarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/tank/arr:/data
+      - ../config/bazarr:/config
+    labels:
+      glance.name: bazarr
+      glance.icon: si:bazarr
+      glance.url: https://bazarr.media.blackmesa.local
+      glance.description: Bazarr is a companion application to Sonarr and Radarr.
+      glance.category: media
+    restart: unless-stopped
+    networks:
+      exposed:
+        ipv4_address: 172.30.0.168
+
+networks:
+  exposed:
+    external: true
+    name: blackmesa

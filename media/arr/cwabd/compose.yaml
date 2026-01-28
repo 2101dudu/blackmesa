@@ -1,0 +1,22 @@
+services:
+  calibre-web-automated-book-downloader:
+    image: ghcr.io/calibrain/calibre-web-automated-book-downloader:v0.4.0
+    container_name: calibre-web-automated-book-downloader
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - INGEST_DIR=/books
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./config:/config 
+      - /mnt/tank/torrents/media/books:/books
+    restart: unless-stopped
+    networks:
+      exposed:
+        ipv4_address: 172.30.0.163
+
+networks:
+  exposed:
+    external: true
+    name: blackmesa

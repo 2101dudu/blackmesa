@@ -1,0 +1,26 @@
+services:
+  portainer:
+    image: portainer/portainer-ce:2.33.6-alpine
+    container_name: portainer
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./data:/data
+    labels:
+      glance.name: Portainer
+      glance.icon: si:portainer
+      glance.url: https://portainer.blackmesa.local
+      glance.description: Container management platform
+      glance.category: organization
+    restart: unless-stopped
+    networks:
+      exposed:
+        ipv4_address: 172.30.0.140
+
+networks:
+  exposed:
+    external: true
+    name: blackmesa

@@ -1,0 +1,27 @@
+services:
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:2.3.2-nightly
+    container_name: prowlarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/tank/arr:/data
+      - ../config/prowlarr:/config
+    labels:
+      glance.name: prowlarr
+      glance.icon: si:prowlarr
+      glance.url: https://prowlarr.media.blackmesa.local
+      glance.description: "Prowlarr is an indexer manager/proxy built on the popular *arr .net/reactjs base stack to integrate with your various PVR apps, supporting management of both Torrent Trackers and Usenet Indexers."
+      glance.category: media
+    restart: unless-stopped
+    networks:
+      exposed:
+        ipv4_address: 172.30.0.169
+
+networks:
+  exposed:
+    external: true
+    name: blackmesa

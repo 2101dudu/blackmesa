@@ -1,0 +1,27 @@
+services:
+  readarr:
+    image: ghcr.io/pennydreadful/bookshelf:hardcover
+    container_name: readarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/tank/arr:/data
+      - ../config/readarr:/config
+    labels:
+      glance.name: readarr
+      glance.icon: si:readarr
+      glance.url: https://readarr.media.blackmesa.local
+      glance.description: Readarr is an ebook and audiobook collection manager for torrent users.
+      glance.category: media
+    restart: unless-stopped
+    networks:
+      exposed:
+        ipv4_address: 172.30.0.162
+
+networks:
+  exposed:
+    external: true
+    name: blackmesa

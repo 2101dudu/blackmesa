@@ -1,0 +1,51 @@
+services:
+  qbittorrent:
+    image: linuxserver/qbittorrent:5.0.0
+    container_name: qbittorrent
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/tank/arr:/data
+      - ../config/qbittorrent:/config
+    labels:
+      glance.name: qBitTorrent
+      glance.icon: si:qbittorrent
+      glance.url: https://qbit.media.blackmesa.local
+      glance.description: Open-source software alternative to μTorrent
+      glance.category: media
+    restart: unless-stopped
+    networks:
+      exposed:
+        ipv4_address: 172.30.0.150
+
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:v3.4.6
+    container_name: flaresoverr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+      - LOG_FILE=${LOG_FILE:-none}
+      - LOG_HTML=${LOG_HTML:-false}
+      - CAPTCHA_SOLVER=${CAPTCHA_SOLVER:-none}
+    volumes:
+      - ../config/flaresolverr:/config
+    labels:
+      glance.name: flaresolverr
+      glance.icon: si:flaresolverr
+      glance.url: https://flaresolverr.media.blackmesa.local
+      glance.description: FlareSolverr is a proxy server to bypass Cloudflare and DDoS-GUARD protection.
+      glance.category: media
+    restart: unless-stopped
+    networks:
+      exposed:
+        ipv4_address: 172.30.0.151
+
+networks:
+  exposed:
+    external: true
+    name: blackmesa
