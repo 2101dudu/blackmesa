@@ -1,0 +1,26 @@
+services:
+  jellyseerr:
+    image: ghcr.io/fallenbagel/jellyseerr:latest
+    container_name: jellyseerr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - LOG_LEVEL=debug
+    volumes:
+      - ./config:/app/config
+    labels:
+      glance.name: jellyseerr
+      glance.icon: si:jellyseerr
+      glance.url: https://jellyseerr.media.blackmesa.local
+      glance.description: Jellyseerr is a free and open source fork of Overseerr for managing requests for your media library.
+      glance.category: media
+    restart: unless-stopped
+    networks:
+      exposed:
+        ipv4_address: 172.30.0.171
+
+networks:
+  exposed:
+    external: true
+    name: blackmesa

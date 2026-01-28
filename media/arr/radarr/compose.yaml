@@ -1,0 +1,27 @@
+services:
+  radarr:
+    image: lscr.io/linuxserver/radarr:6.0.0-nightly
+    container_name: radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/tank/arr:/data
+      - ../config/radarr:/config
+    labels:
+      glance.name: radarr
+      glance.icon: si:radarr
+      glance.url: https://radarr.media.blackmesa.local
+      glance.description: Movie organizer/manager for usenet and torrent users.
+      glance.category: media
+    restart: unless-stopped
+    networks:
+      exposed:
+        ipv4_address: 172.30.0.160
+
+networks:
+  exposed:
+    external: true
+    name: blackmesa

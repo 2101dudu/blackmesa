@@ -3,5 +3,6 @@ ansible-key.pub
 postgres/
 
 **/data/*
+**/config/*
 
 **/.env*

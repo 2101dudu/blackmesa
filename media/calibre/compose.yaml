@@ -1,0 +1,25 @@
+services:
+  calibre:
+    image: lscr.io/linuxserver/calibre:v4
+    container_name: calibre
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - ./config:/config
+    labels:
+      glance.name: calibre
+      glance.icon: si:calibre
+      glance.url: https://calibre.media.blackmesa.local
+      glance.description: Calibre is a powerful and easy to use e-book manager.
+      glance.category: media
+    restart: unless-stopped
+    networks:
+      exposed:
+        ipv4_address: 172.30.0.180
+
+networks:
+  exposed:
+    external: true
+    name: blackmesa

@@ -1,0 +1,30 @@
+services:
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin:10.11.5
+    container_name: jellyfin
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - VERSION=docker
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /mnt/tank/arr/media:/data
+      - ./config:/config
+    labels:
+      glance.name: jellyfin
+      glance.icon: si:jellyfin
+      glance.url: https://jellyfin.media.blackmesa.local
+      glance.description: Jellyfin is a Free Software Media System that puts you in control of managing and streaming your media.
+      glance.category: media
+    ports:
+      - 8096:8096
+    restart: unless-stopped
+    networks:
+      exposed:
+        ipv4_address: 172.30.0.170
+
+networks:
+  exposed:
+    external: true
+    name: blackmesa
